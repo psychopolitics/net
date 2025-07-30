@@ -1,3 +1,61 @@
+/* Define CSS custom properties for light and dark themes */
+:root {
+  --background: #fff;
+  --text: #333;
+  --header-bg: #f5f5f5;
+  --footer-bg: #444;
+  --footer-text: #fff;
+  --code-bg: #f3f3f3;
+  --code-border: #000;
+  --code-label-bg: #f8f8f8;
+  --blog-author-bg: #f8f8f8;
+  --blockquote-bg: #f8f8f8;
+  --blockquote-border: red;
+  --link: #333;
+  --link-hover: blue;
+  --active-nav: #ccc;
+  --gitter-bg: #f8f8f8;
+}
+
+[data-theme="dark"] {
+  --background: #1a1a1a;
+  --text: #e0e0e0;
+  --header-bg: #2c2c2c;
+  --footer-bg: #222;
+  --footer-text: #e0e0e0;
+  --code-bg: #2c2c2c;
+  --code-border: #555;
+  --code-label-bg: #333;
+  --blog-author-bg: #2c2c2c;
+  --blockquote-bg: #2c2c2c;
+  --blockquote-border: #ff5555;
+  --link: #aaa;
+  --link-hover: #66b3ff;
+  --active-nav: #888;
+  --gitter-bg: #2c2c2c;
+}
+
+/* Apply system preference for dark mode */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #1a1a1a;
+    --text: #e0e0e0;
+    --header-bg: #2c2c2c;
+    --footer-bg: #222;
+    --footer-text: #e0e0e0;
+    --code-bg: #2c2c2c;
+    --code-border: #555;
+    --code-label-bg: #333;
+    --blog-author-bg: #2c2c2c;
+    --blockquote-bg: #2c2c2c;
+    --blockquote-border: #ff5555;
+    --link: #aaa;
+    --link-hover: #66b3ff;
+    --active-nav: #888;
+    --gitter-bg: #2c2c2c;
+  }
+}
+
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
@@ -5,10 +63,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  background: var(--background);
+  color: var(--text);
 }
+
 h1, h2, h3 {
   font-family: 'Montserrat', sans-serif;
 }
+
 .container {
   max-width: 1024px;
   margin: 0 auto;
@@ -19,39 +81,48 @@ h1, h2, h3 {
     padding: 0 20px;
   }
 }
+
 header {
-  background: #f5f5f5;
+  background: var(--header-bg);
   padding: 20px 0;
 }
+
 header .container {
   display: flex;
   justify-content: space-between;
 }
+
 .home-link img {
   width: 60px;
   height: auto;
 }
 
-/* main menu */
+/* Main menu */
 .main-menu ul {
   display: flex;
   justify-content: flex-end;
   list-style: none;
 }
+
 .main-menu li {
   padding: 0 20px;
 }
+
 .main-menu a {
   text-decoration: none;
+  color: var(--link);
 }
+
 .main-menu a:hover {
   text-decoration: underline;
+  color: var(--link-hover);
 }
-/* active nav links */
+
+/* Active nav links */
 .home .home,
 .other-page .other-page,
-.blog .blog  {
-  color: #ccc;
+.blog .blog {
+  color: var(--active-nav);
   pointer-events: none;
   cursor: default;
 }
@@ -59,42 +130,49 @@ header .container {
 main {
   padding: 50px 0;
 }
+
 img {
   display: block;
   width: 100%;
   height: auto;
   max-width: 500px;
 }
-img[src$='#full-width'] { 
+
+img[src$='#full-width'] {
   max-width: 100%;
 }
-img[src$='#netlify-button'] { 
+
+img[src$='#netlify-button'] {
   max-width: 150px;
 }
+
 footer {
-  background: #444;
+  background: var(--footer-bg);
   padding: 20px;
-  color: #fff;
+  color: var(--footer-text);
   margin-top: auto;
 }
+
 .blog-image {
   margin: 40px 0;
 }
 
 pre[class*="language-"] {
-  background: #f3f3f3;
-  border-left: 2px solid #000;
+  background: var(--code-bg);
+  border-left: 2px solid var(--code-border);
   position: relative;
   font-size: 14px;
 }
+
 pre[class*="language-javascript"]:after {
   position: absolute;
   top: 0;
-  right:0;
+  right: 0;
   content: "js";
   padding: 5px;
-  background-color: #f8f8f8;
+  background: var(--code-label-bg);
 }
+
 .token.operator {
   background: transparent;
 }
@@ -102,52 +180,60 @@ pre[class*="language-javascript"]:after {
 .blog-author {
   margin: 40px 0;
   padding: 20px;
-  background-color: #f8f8f8;
+  background: var(--blog-author-bg);
 }
+
 .blog-author h2 {
   margin-top: 0;
 }
+
 .blog-author > div {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
+
 .blog-author img {
   width: 150px;
 }
+
 .blog-author p {
   padding-left: 50px;
   font-style: italic;
 }
+
 .blog-list {
   list-style: none;
 }
+
 .blog-list li {
   padding-bottom: 50px;
 }
 
 .blog-list a {
   text-decoration: none;
-  color: #333;
+  color: var(--link);
 }
 
 .blog-list a h2 {
   display: inline-block;
-  color: #333;
-  border-bottom: 1px solid #333;
-  transition: color 0.5s ease-in-out;
+  color: var(--link);
+  border-bottom: 1px solid var(--link);
+  transition: color 0.5s ease-in-out, border-bottom 0.5s ease-in-out;
 }
+
 .blog-list a:hover h2 {
-  color: blue;
-  border-bottom: 1px solid blue;
+  color: var(--link-hover);
+  border-bottom: 1px solid var(--link-hover);
 }
+
 .blog-list time {
   display: block;
 }
 
 blockquote {
-  border-left: 4px solid red;
-  background: #f8f8f8;
+  border-left: 4px solid var(--blockquote-border);
+  background: var(--blockquote-bg);
   padding: 20px;
   margin: 0;
 }
@@ -157,13 +243,15 @@ blockquote {
   margin-top: 50px;
   display: block;
 }
+
 .gitter-invite p {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: #f8f8f8;
+  background: var(--gitter-bg);
 }
+
 .gitter-invite img {
   width: 40px;
   display: inline-block;
